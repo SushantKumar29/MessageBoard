@@ -1,0 +1,38 @@
+<div class="col-md-8 col-md-ofset-2">
+	<div class="message-show">
+		<% if message == nil %>
+			<%= render 'page_error' %>
+		<% else %>
+			<h2><%= message.title %></h2>
+			<p class="message-posted-by"> Posted by <%=  message.user.email %> <%= time_ago_in_words(message.created_at)%> ago.</p>
+			<p class="message-desc"><%= raw message.description %></p>
+			<div>
+				<% unless message.picture.nil? %>
+					<%= image_tag message.picture.name, alt: "Missing Image!", height: "250px", width: "250px" %>
+				<% end %>
+			</div>
+
+			<div class="links btn-group">
+				<%= link_to "Back", root_path, class: "btn btn-default" %>
+				<% if user_signed_in? %>
+					<% if message.user_id == current_user.id %>
+					<%= link_to "Edit", edit_message_path(message), class: "btn btn-default"  %>
+					<%= link_to "Delete", message_path(message), method: :delete, data: { confirm: "Are you sure ?" }, class: "btn btn-default"  %>
+					<% end %>
+				<% end %>
+			</div><br>
+
+			<h3>Comments:</h3>
+			<%= render message.comments.order("created_at DESC").paginate(:page => params[:page]) %>
+
+
+			<h3 class="reply-to-msg">Reply to Message</h3>
+			<%= render "comments/form", message: message %>
+			<% end %>
+			
+	</div>
+</div>
+
+
+
+

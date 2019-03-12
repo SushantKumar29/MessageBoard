@@ -1,0 +1,13 @@
+<h1>Edit Comment</h1>
+<%= form_for([message, comment]) do |f| %>
+	<div class="edit-area col-md-8">
+		<spam class="lbl">Comment</spam> <br/>
+		<%= f.cktext_area "content", :class => "field-2 col-md-12"%>
+		<%= f.file_field :picture %>
+		<div class="btn-group col-md-12" style="padding-top: 10px; padding-left: 0px;">
+			<%= link_to "Back", :back, class: "btn btn-custom" %>
+			<%= f.submit :class => 'btn btn-custom' %>
+		</div>
+	</div>
+	
+<% end %>

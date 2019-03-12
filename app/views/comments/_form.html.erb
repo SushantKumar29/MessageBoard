@@ -1,0 +1,8 @@
+<%= form_for([message, message.comments.build]) do |f| %>
+	Comment <br/>
+	<div class="col-md-12 comment-box-holder">
+		<%= f.text_area "content", :class => "comment-text text-content col-md-12"%>
+		<%= f.file_field :picture %>
+	</div>
+	<%= f.submit :class => 'btn-custom' %>
+<% end %>

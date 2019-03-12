@@ -1,0 +1,15 @@
+<% messages.each do |message| %>
+	<div class="col-md-6">
+		<div class="message">
+			<div class="title">
+				<h2 class="message-title"><%= message.title %></h2>
+			</div>
+			<%= link_to "View Message", message_path(message), class: "btn-custom fixed" %>
+		</div>
+		
+	</div>
+<% end %>
+
+<div style="text-align: center;" class="col-md-12">
+	<%= will_paginate messages, renderer: BootstrapPagination::Rails %>
+</div>

@@ -1,0 +1,8 @@
+<% comments.each do |comment| %>
+	<%= comment.content %>
+<% end %>
+
+
+<div style="text-align: center;" class="col-md-21">
+	<%= will_paginate comments, renderer: BootstrapPagination::Rails %>
+</div>

@@ -1,0 +1,21 @@
+<div class="comment">
+	<p class="comment-content"><%= raw comment.content %></p>
+	<p class="comment-posted-by">Psted by <%= comment.user.email %> <%= time_ago_in_words(comment.created_at) %> ago. </p>
+	<div>
+		<% unless comment.picture.nil? %>
+			<%= image_tag comment.picture.name, alt: "Missing Image!", height: "50px", width: "50px" %>
+		<% end %>
+	</div>
+	<div class="link">
+		<% if user_signed_in? %>
+			<% if comment.user_id == current_user.id %>
+				<%= link_to "Edit",  edit_message_comment_path(comment.message, comment), class: "btn-custum" %>
+				<%= link_to "Delete", message_comment_path(comment.message, comment), method: :delete, data: {confirm: "Are you sure ?"} %>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+
+
+		
+		

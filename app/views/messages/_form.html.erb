@@ -1,0 +1,16 @@
+
+<%= form_for message do |f| %>
+
+	<div class="col-md-8 edit-area">
+		<span class="lbl">Title </span> <br/>
+		<%= f.text_field :title, :class => "field col-md-12" %><br/><hr style="color: white; width: 0px;"/>
+		<span class="lbl">Description </span><br/> 
+		<%= f.cktext_area :description, :class => "field-2 col-md-12" %><br/><br/>
+		<%= f.file_field :picture %>
+		<div class="btn-group col-md-12" style="padding-top: 10px; padding-left: 0px;">
+			<%= link_to "Back", :back, class: "btn btn-custom" %>
+			<%= f.button :Save, :class => "btn btn-custom" %>
+		</div>
+	</div>
+<% end %> 
+

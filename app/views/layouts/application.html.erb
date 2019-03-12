@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MessageBoard</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+ 
+<div class="navbar navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+			<%= link_to "Message Board", root_path, class: "navbar-brand" %>
+		</div>
+		<ul class="nav navbar-nav">
+			<% if user_signed_in? %>
+				<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete  %></li> 
+			<% else %>
+				<li><%= link_to "Sign Up", new_user_registration_path %></li>
+				<li><%= link_to "Log In", new_user_session_path %></li>
+			<% end %>
+		</ul>
+		<% if user_signed_in? %>
+			<p><%= link_to "New Message", new_message_path, class: "navbar-right navbar-text navbar-link" %></p>
+		<% end %>
+	</div>
+</div>
+
+<!-- <p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p> -->
+<div class="container" style="padding-left: 30px;">
+	<% flash.each do |key, msg| %>
+	<div class="col-md-5 alert  alert-<%=key%>"><%= msg %></div>
+	<% end %>
+</div>
+
+<div class="container">
+	<%= yield %>
+</div>
+
+
+</body>
+</html>
